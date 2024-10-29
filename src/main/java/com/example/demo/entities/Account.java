@@ -9,9 +9,10 @@ import org.hibernate.type.SqlTypes;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "account_id", nullable = false)
+    @Column(name = "account_id")
     @JdbcTypeCode(SqlTypes.INTEGER)
     private Integer accountID;
+
 
     public Integer getAccountID() {
         return accountID;
@@ -21,7 +22,6 @@ public class Account {
         this.accountID = accountID;
     }
 
-
     public String getAccountName() {
         return accountName;
     }
@@ -29,8 +29,6 @@ public class Account {
     public void setAccountName(String accountName) {
         this.accountName = accountName;
     }
-
-
 
     public String getPassword() {
         return password;
@@ -40,8 +38,6 @@ public class Account {
         this.password = password;
     }
 
-
-
     public Integer getStatus() {
         return status;
     }
@@ -49,7 +45,6 @@ public class Account {
     public void setStatus(Integer status) {
         this.status = status;
     }
-
 
     public Integer getType() {
         return type;
@@ -66,6 +61,41 @@ public class Account {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
+
+    @Column(name="pin")
+    private  String pin;
     @Column(name = "account_name")
     private String accountName;
     @Column(name = "password")

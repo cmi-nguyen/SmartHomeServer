@@ -38,12 +38,25 @@ public class AccountServiceImpl implements AccountService {
         if (Objects.nonNull(account.getStatus())){
             accDB.setStatus(account.getStatus());
         }
-        if (Objects.nonNull(account.getPassword())&&!"".equalsIgnoreCase(account.getPassword())){
-            accDB.setPassword(account.getPassword());
+        if (Objects.nonNull(account.getPhone())&&!"".equalsIgnoreCase(account.getPhone())){
+            accDB.setPassword(account.getPhone());
         }
-        if (Objects.nonNull(account.getStaffID())){
-            accDB.setStatus(account.getStaffID());
+        if (Objects.nonNull(account.getEmail())&&!"".equalsIgnoreCase(account.getEmail())){
+            accDB.setEmail(account.getEmail());
         }
+        if (Objects.nonNull(account.getAddress())&&!"".equalsIgnoreCase(account.getAddress())){
+            accDB.setAddress(account.getAddress());
+        }
+        if (Objects.nonNull(account.getPin())&&!"".equalsIgnoreCase(account.getPin())){
+            accDB.setPin(account.getPin());
+        }
+        if (Objects.nonNull(account.getType())){
+            accDB.setType(account.getType());
+        }
+
+        accDB.setGender(account.isGender());
+
+
         return accountRepository.save(accDB);
     }
 
