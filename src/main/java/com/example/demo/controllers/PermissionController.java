@@ -2,7 +2,8 @@ package com.example.demo.controllers;
 
 
 import com.example.demo.entities.Permission;
-import com.example.demo.entities.Transaction;
+
+
 import com.example.demo.services.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +12,7 @@ import java.util.List;
 
 @RestController
 public class PermissionController {
-    @Autowired
-    private PermissionService permissionService;
+    @Autowired private PermissionService permissionService;
 
     // Read op mapping
     @GetMapping("/permissions")
@@ -30,7 +30,7 @@ public class PermissionController {
 
     // Delete op
     @DeleteMapping("/permissions/{id}")
-    public String deleteAccount(@PathVariable("id") int permissionId){
+    public String deletePermission(@PathVariable("id") int permissionId){
         permissionService.deletePermissionByID(permissionId);
         return "Delete Successfull";
     }
