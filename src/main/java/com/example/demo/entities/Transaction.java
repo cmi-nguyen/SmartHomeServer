@@ -15,11 +15,11 @@ public class Transaction {
     @JdbcTypeCode(SqlTypes.INTEGER)
     private Integer transactionID;
 
-    public Integer transactionID() {
+    public Integer getTransactionID() {
         return transactionID;
     }
 
-    public void transactionID(Integer transactionID) {
+    public void setTransactionID(Integer transactionID) {
         this.transactionID = transactionID;
     }
 

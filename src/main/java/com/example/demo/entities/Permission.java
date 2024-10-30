@@ -21,6 +21,14 @@ public class Permission {
     @JdbcTypeCode(SqlTypes.INTEGER)
     private Integer permissionID;
 
+    public String getPermissionName() {
+        return permissionName;
+    }
+
+    public void setPermissionName(String permissionName) {
+        this.permissionName = permissionName;
+    }
+
     @Column(name = "permission_name")
     private String permissionName;
 
