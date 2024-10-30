@@ -23,7 +23,7 @@ public class PermissionController {
         return permissionService.savePermission(permission);
     }
     // Update op
-    @PutMapping("/accounts/{id}")
+    @PutMapping("/permissions/{id}")
     public Permission updatePermission(@RequestBody Permission permission, @PathVariable("id") int permissionId){
         return permissionService.UpdatePermission(permission,permissionId);
     }

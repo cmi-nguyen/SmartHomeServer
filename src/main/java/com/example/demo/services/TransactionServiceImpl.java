@@ -5,10 +5,11 @@ import com.example.demo.entities.Transaction;
 
 import com.example.demo.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-
+@Service
 public class TransactionServiceImpl implements TransactionService {
 
     @Autowired
