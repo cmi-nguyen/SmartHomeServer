@@ -1,8 +1,11 @@
 package com.example.demo.entities;
 
+import com.example.demo.config.AESEncryption;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+
+
 
 @Entity
 @Table(name = "account")
@@ -22,8 +25,9 @@ public class Account {
         this.accountID = accountID;
     }
 
-    public String getAccountName() {
-        return accountName;
+    public String getAccountName()  {
+       
+        return  this.accountName;
     }
 
     public void setAccountName(String accountName) {
@@ -95,10 +99,13 @@ public class Account {
     }
 
     @Column(name="pin")
+    @Convert(converter =  AESEncryption.class)
     private  String pin;
     @Column(name = "account_name")
+    @Convert(converter =  AESEncryption.class)
     private String accountName;
     @Column(name = "password")
+    @Convert(converter =  AESEncryption.class)
     private String password;
     @Column(name = "status")
     private Integer status;
@@ -112,4 +119,7 @@ public class Account {
     private String address;
     @Column(name="gender")
     private boolean gender;
+
+    // Encrypt
+
 }
