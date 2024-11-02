@@ -14,14 +14,17 @@ public class TransactionController {
     private TransactionService transactionService;
 
     // Read op mapping
+    @CrossOrigin
     @GetMapping("/transactions")
     public List<Transaction> fetchAccountList(){return transactionService.fetchTransactionList();}
     // Save op
+    @CrossOrigin
     @PostMapping("/transactions")
     public Transaction saveTransaction(@RequestBody Transaction transaction){
         return transactionService.savetransaction(transaction);
     }
     // Update op
+    @CrossOrigin
     @PutMapping("/transactions/{id}")
     public Transaction updateTransaction(@RequestBody Transaction account, @PathVariable("id") int transactionId) {
         return transactionService.updateTransaction(account, transactionId);
