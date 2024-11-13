@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import com.example.demo.config.AESEncryption;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
@@ -95,22 +96,31 @@ public class Transaction {
         this.transactionDate = transactionDate;
     }
     // Columns
+    @Convert(converter =  AESEncryption.class)
     @Column(name="sender_phone")
     private String senderPhone;
+    @Convert(converter =  AESEncryption.class)
     @Column(name="sender_name")
     private String senderName;
+    @Convert(converter =  AESEncryption.class)
     @Column(name = "receiver_phone")
     private  String receiverPhone;
+    @Convert(converter =  AESEncryption.class)
     @Column(name="receiver_name")
     private String receiverName;
+    @Convert(converter =  AESEncryption.class)
     @Column(name="amount")
     private double amount;
+    @Convert(converter =  AESEncryption.class)
     @Column(name="message")
     private String message;
+    @Convert(converter =  AESEncryption.class)
     @Column(name="otp")
     private  String otp;
+    @Convert(converter =  AESEncryption.class)
     @Column(name="transaction_fee")
     private double transactionFee;
+    @Convert(converter =  AESEncryption.class)
     @Column(name = "transaction_date")
     private Date transactionDate;
 

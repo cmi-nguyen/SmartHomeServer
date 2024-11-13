@@ -24,7 +24,7 @@ public class AESEncryption implements AttributeConverter<Object, String> {
 
     private Key getKey() {
         if (key == null)
-            key = new SecretKeySpec(encryptionKey.getBytes(), encryptionCipher);
+            key = new SecretKeySpec(encryptionKey.getBytes(), encryptionCipher); //TODOS Save encryted AES key to Database
         return key;
     }
 
