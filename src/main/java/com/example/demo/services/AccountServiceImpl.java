@@ -5,17 +5,9 @@ import com.example.demo.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
+import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 
@@ -81,5 +73,44 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void deleteAccountByID(int accountID) {
         accountRepository.deleteById(accountID);
+    }
+
+    @Override
+    public Account findByID(int accountID) {
+        return accountRepository.findById(accountID).get();
+    }
+
+    @Override
+    public Boolean login(Account account) {
+       List<Account> accounts = accountRepository.findAll();
+       for (int i = 0; i < accounts.size(); i++){
+           if (account.getPassword().equals(accounts.get(i).getPassword()) && account.getAccountName().equals(accounts.get(i).getAccountName())){
+               return  true;
+           }
+       }
+       return false;
+    }
+
+    @Override
+    public Account generateAndSaveKeysForAccount(Account account) throws NoSuchAlgorithmException {
+        // Generate RSA key pair
+        KeyPair rsaKeyPair = HybridCryptosystem.generateRSAKeyPair(); // Use previously defined method
+
+        // Convert keys to Base64 for storage
+        String publicKey = KeyUtils.encodeKeyToBase64(rsaKeyPair.getPublic());
+        String privateKey = KeyUtils.encodeKeyToBase64(rsaKeyPair.getPrivate()); // Encrypt in production
+
+        // Optional: Generate AES key for symmetric encryption
+        SecretKey aesKey = HybridCryptosystem.generateAESKey();
+        String aesKeyEncoded = KeyUtils.encodeKeyToBase64(aesKey); // Encrypt in production
+
+        // Save keys to the account entity
+        account.setRsaPublicKey(publicKey);
+        account.setRsaPrivateKey(privateKey);
+        account.setAesKey(aesKeyEncoded);
+
+        // Save account to database
+        accountRepository.save(account);
+        return account;
     }
 }

@@ -112,31 +112,31 @@ public class Transaction {
     }
 
     // Columns
-//    @Convert(converter =  AESEncryption.class)
+
     @Column(name="sender_phone")
     private String senderPhone;
-//    @Convert(converter =  AESEncryption.class)
+
     @Column(name="sender_name")
     private String senderName;
-//    @Convert(converter =  AESEncryption.class)
+
     @Column(name = "receiver_phone")
     private  String receiverPhone;
-//    @Convert(converter =  AESEncryption.class)
+
     @Column(name="receiver_name")
     private String receiverName;
-//    @Convert(converter =  AESEncryption.class)
+
     @Column(name="amount")
     private double amount;
-//    @Convert(converter =  AESEncryption.class)
+
     @Column(name="message")
     private String message;
-//    @Convert(converter =  AESEncryption.class)
+
     @Column(name="otp")
     private  String otp;
-//    @Convert(converter =  AESEncryption.class)
+
     @Column(name="transaction_fee")
     private double transactionFee;
-//    @Convert(converter =  AESEncryption.class)
+
     @Column(name = "transaction_date")
     private Date transactionDate;
     @Column(name = "senderid")
@@ -144,15 +144,15 @@ public class Transaction {
     @Column(name="receiverid")
     private  int receiverid;
 
-    public String getCombinedKey() {
-        return combinedKey;
+    public String getAESKey() {
+        return AESKey;
     }
 
-    public void setCombinedKey(String combinedKey) {
-        this.combinedKey = combinedKey;
+    public void setAESKey(String AESKey) {
+        this.AESKey = AESKey;
     }
 
-    @Column(name="combinedKey")
-    private  String combinedKey;
+    @Column(name="AESKey")
+    private  String AESKey;
 
 }
