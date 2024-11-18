@@ -31,10 +31,13 @@ public class EncDecService
         KeyPair  keyPair = generateKeyPair();
         privateKey = keyPair.getPrivate();
         publicKey = keyPair.getPublic();
-        String filePath = "C:/Projects/ATBM//SpringBootTest-main/src/main/resources/mykey.pem";
+//        String filePath = "C:/Projects/ATBM//SpringBootTest-main/src/main/resources/mykey.pem";
 
         // Write private key to PEM file
-        writePemFile(privateKey, "RSA PRIVATE KEY", filePath);
+//        writePemFile(privateKey, "RSA PRIVATE KEY", filePath);
+    }
+    public void RestoreKey(){
+
     }
 
     private KeyPair generateKeyPair() throws NoSuchAlgorithmException {
@@ -43,6 +46,7 @@ public class EncDecService
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
         return keyPair;
     }
+
 
     public String encrypt(String data) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException {
         //Generate Key Pair
@@ -56,32 +60,13 @@ public class EncDecService
 
     }
 
-    public String decrypt(String encryptedData) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+    public String decrypt(String encryptedData, PrivateKey key) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 
         Cipher cipher = Cipher.getInstance(RSA);
-        PrivateKeyLoader loader = new PrivateKeyLoader();
-        PrivateKey key = null;
-        try {
-            key = loader.load("mykey.pem");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 
         cipher.init(Cipher.DECRYPT_MODE,key);
         byte[] decryptedValue  = cipher.doFinal(Base64.getMimeDecoder().decode(encryptedData));
         return new String(decryptedValue);
 
     }
-    private static void writePemFile(PrivateKey key, String description, String filePath) throws IOException {
-        Path path = Paths.get(filePath);
-        path.getParent().toFile().mkdirs(); // Ensure the directory exists
-
-        PemObject pemObject = new PemObject(description, key.getEncoded());
-        try (PemWriter pemWriter = new PemWriter(new OutputStreamWriter(new FileOutputStream(filePath)))) {
-            pemWriter.writeObject(pemObject);
-        }
-    }
-
-
-
 }

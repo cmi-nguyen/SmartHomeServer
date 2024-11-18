@@ -5,6 +5,17 @@ import com.example.demo.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,6 +29,10 @@ public class AccountServiceImpl implements AccountService {
     // Save
     @Override
     public Account saveAccount(Account account) {
+        // Encryption goes here
+        // Fields to Encode: phone, address, pin
+
+
         return accountRepository.save(account);
     }
     // Read
@@ -38,8 +53,8 @@ public class AccountServiceImpl implements AccountService {
         if (Objects.nonNull(account.getStatus())){
             accDB.setStatus(account.getStatus());
         }
-        if (Objects.nonNull(account.getPhone())&&!"".equalsIgnoreCase(account.getPhone())){
-            accDB.setPassword(account.getPhone());
+        if (Objects.nonNull(account.getPassword())&&!"".equalsIgnoreCase(account.getPassword())){
+            accDB.setPassword(account.getPassword());
         }
         if (Objects.nonNull(account.getEmail())&&!"".equalsIgnoreCase(account.getEmail())){
             accDB.setEmail(account.getEmail());
@@ -54,11 +69,14 @@ public class AccountServiceImpl implements AccountService {
             accDB.setType(account.getType());
         }
 
+
+
         accDB.setGender(account.isGender());
 
 
         return accountRepository.save(accDB);
     }
+
 
     @Override
     public void deleteAccountByID(int accountID) {

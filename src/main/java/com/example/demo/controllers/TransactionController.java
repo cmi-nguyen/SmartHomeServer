@@ -26,7 +26,7 @@ public class TransactionController {
     // Update op
     @CrossOrigin
     @PutMapping("/transactions/{id}")
-    public Transaction updateTransaction(@RequestBody Transaction account, @PathVariable("id") int transactionId) {
-        return transactionService.updateTransaction(account, transactionId);
+    public Transaction updateTransaction(@RequestBody Transaction transaction, @PathVariable("id") int transactionId) {
+        return transactionService.updateTransaction(transaction, transactionId);
     }
 }

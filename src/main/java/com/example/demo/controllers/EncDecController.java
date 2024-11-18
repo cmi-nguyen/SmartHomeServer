@@ -23,8 +23,8 @@ public class EncDecController {
         return service.encrypt(data);
     }
 
-    @PostMapping("/dec")
-    public String decrypt(@RequestBody  String encryptedData) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
-        return service.decrypt(encryptedData);
-    }
+//    @PostMapping("/dec")
+//    public String decrypt(@RequestBody  String encryptedData) throws NoSuchPaddingException, IllegalBlockSizeException, NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+//        return service.decrypt(encryptedData);
+//    }
 }

@@ -97,15 +97,28 @@ public class Account {
     public void setPin(String pin) {
         this.pin = pin;
     }
+    public String getUserKey() {
+        return user_key;
+    }
 
+    public void setUserKey(String key) {
+        this.user_key = key;
+    }
+    public String getRsaKey() {
+        return rsaKey;
+    }
+
+    public void setRsaKey(String rsaKey) {
+        this.rsaKey = rsaKey;
+    }
     @Column(name="pin")
-    @Convert(converter =  AESEncryption.class)
+//    @Convert(converter =  AESEncryption.class)
     private  String pin;
     @Column(name = "account_name")
-    @Convert(converter =  AESEncryption.class)
+//    @Convert(converter =  AESEncryption.class)
     private String accountName;
     @Column(name = "password")
-    @Convert(converter =  AESEncryption.class)
+//    @Convert(converter =  AESEncryption.class)
     private String password;
     @Column(name = "status")
     private Integer status;
@@ -119,7 +132,10 @@ public class Account {
     private String address;
     @Column(name="gender")
     private boolean gender;
-
-    // Encrypt
+    @Column(name = "user_key")
+    private String user_key;
+    @Column(name="rsa_key" ,columnDefinition = "TEXT")
+    private String rsaKey;
+// Encrypt
 
 }

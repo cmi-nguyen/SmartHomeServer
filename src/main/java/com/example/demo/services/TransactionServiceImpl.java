@@ -28,7 +28,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Transaction updateTransaction(Transaction transaction, int transactionId) {
         Transaction trasnDB = transactionRepository.findById(transactionId).get();
-        if (Objects.nonNull(trasnDB.getTransactionID())){
+        if (Objects.nonNull(transaction.getTransactionID())){
             trasnDB.setTransactionID(transaction.getTransactionID());
         }
         if (Objects.nonNull(transaction.getMessage())&&!"".equalsIgnoreCase(transaction.getMessage())){
@@ -50,6 +50,13 @@ public class TransactionServiceImpl implements TransactionService {
         if (0>(transaction.getTransactionFee())){
             trasnDB.setTransactionFee(transaction.getTransactionFee());
         }
+        if(transaction.getSenderId()!=0){
+            trasnDB.setSenderId(transaction.getSenderId());
+        }
+        if(transaction.getReceiverid()!=0){
+            trasnDB.setReceiverid(transaction.getReceiverid());
+        }
+
 
         return transactionRepository.save(trasnDB);
     }

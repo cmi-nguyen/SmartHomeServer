@@ -95,33 +95,64 @@ public class Transaction {
     public void setTransactionDate(Date transactionDate) {
         this.transactionDate = transactionDate;
     }
+    public int getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(int senderId) {
+        this.senderId = senderId;
+    }
+
+    public int getReceiverid() {
+        return receiverid;
+    }
+
+    public void setReceiverid(int receiverid) {
+        this.receiverid = receiverid;
+    }
+
     // Columns
-    @Convert(converter =  AESEncryption.class)
+//    @Convert(converter =  AESEncryption.class)
     @Column(name="sender_phone")
     private String senderPhone;
-    @Convert(converter =  AESEncryption.class)
+//    @Convert(converter =  AESEncryption.class)
     @Column(name="sender_name")
     private String senderName;
-    @Convert(converter =  AESEncryption.class)
+//    @Convert(converter =  AESEncryption.class)
     @Column(name = "receiver_phone")
     private  String receiverPhone;
-    @Convert(converter =  AESEncryption.class)
+//    @Convert(converter =  AESEncryption.class)
     @Column(name="receiver_name")
     private String receiverName;
-    @Convert(converter =  AESEncryption.class)
+//    @Convert(converter =  AESEncryption.class)
     @Column(name="amount")
     private double amount;
-    @Convert(converter =  AESEncryption.class)
+//    @Convert(converter =  AESEncryption.class)
     @Column(name="message")
     private String message;
-    @Convert(converter =  AESEncryption.class)
+//    @Convert(converter =  AESEncryption.class)
     @Column(name="otp")
     private  String otp;
-    @Convert(converter =  AESEncryption.class)
+//    @Convert(converter =  AESEncryption.class)
     @Column(name="transaction_fee")
     private double transactionFee;
-    @Convert(converter =  AESEncryption.class)
+//    @Convert(converter =  AESEncryption.class)
     @Column(name = "transaction_date")
     private Date transactionDate;
+    @Column(name = "senderid")
+    private int senderId;
+    @Column(name="receiverid")
+    private  int receiverid;
+
+    public String getCombinedKey() {
+        return combinedKey;
+    }
+
+    public void setCombinedKey(String combinedKey) {
+        this.combinedKey = combinedKey;
+    }
+
+    @Column(name="combinedKey")
+    private  String combinedKey;
 
 }
