@@ -3,6 +3,7 @@ package com.example.demo;
 import com.example.demo.entities.Account;
 import com.example.demo.services.AESEncryptionService;
 import com.example.demo.services.EncDecService;
+import com.example.demo.services.HybridCryptosystem;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -77,5 +78,41 @@ class DemoApplicationTests {
         PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(decodedPrivateKeyBytes);
         PrivateKey restoredPrivateKey = keyFactory.generatePrivate(privateKeySpec);
         String text = encDecService.decrypt(encrypted,restoredPrivateKey);
+    }
+
+    @Test
+    void HybribCryptoSystemTest(){
+        try {
+            // Step 1: Generate RSA keys for Alice
+
+            KeyPair rsaKeyPair = HybridCryptosystem.generateRSAKeyPair();
+            PublicKey rsaPublicKey = rsaKeyPair.getPublic();
+            PrivateKey rsaPrivateKey = rsaKeyPair.getPrivate();
+
+            // Step 2: Generate AES key for Bob
+            SecretKey aesKey = HybridCryptosystem.generateAESKey();
+
+            // Step 3: Encrypt data using AES
+            String data = "This is a secret message!";
+            byte[] encryptedData = HybridCryptosystem.encryptAES(data.getBytes(), aesKey);
+
+            // Step 4: Encrypt AES key using RSA
+            byte[] encryptedAESKey = HybridCryptosystem.encryptRSA(aesKey.getEncoded(), rsaPublicKey);
+
+            // Simulate transmission of encrypted data and key
+            System.out.println("Encrypted Data: " + Base64.getEncoder().encodeToString(encryptedData));
+            System.out.println("Encrypted AES Key: " + Base64.getEncoder().encodeToString(encryptedAESKey));
+
+            // Step 5: Decrypt AES key using RSA
+            byte[] decryptedAESKeyBytes = HybridCryptosystem.decryptRSA(encryptedAESKey, rsaPrivateKey);
+            SecretKey decryptedAESKey = new SecretKeySpec(decryptedAESKeyBytes, "AES");
+
+            // Step 6: Decrypt data using AES
+            byte[] decryptedData = HybridCryptosystem.decryptAES(encryptedData, decryptedAESKey);
+            System.out.println("Decrypted Data: " + new String(decryptedData));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
