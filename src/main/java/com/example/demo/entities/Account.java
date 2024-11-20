@@ -120,6 +120,13 @@ public class Account {
     public void setAesKey(String aesKey) {
         this.aesKey = aesKey;
     }
+    public float getBalance() {
+        return balance;
+    }
+
+    public void setBalance(float balance) {
+        this.balance = balance;
+    }
     @Column(name="pin")
 //    @Convert(converter =  AESEncryption.class)
     private  String pin;
@@ -147,6 +154,10 @@ public class Account {
     private String rsaPublicKey;
     @Column(name="rsaPrivateKey", columnDefinition =  "TEXT")
     private  String rsaPrivateKey;
+    @Column(name="balance")
+    private float balance;
+
+
 // Encrypt
 
 }

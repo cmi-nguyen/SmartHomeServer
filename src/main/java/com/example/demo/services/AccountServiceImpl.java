@@ -64,6 +64,9 @@ public class AccountServiceImpl implements AccountService {
 
 
         accDB.setGender(account.isGender());
+        if (account.getBalance() != 0 ){
+            accDB.setBalance(account.getBalance());
+        }
 
 
         return accountRepository.save(accDB);
