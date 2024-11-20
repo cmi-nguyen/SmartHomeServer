@@ -113,13 +113,7 @@ public class Account {
         this.rsaPrivateKey = rsaPrivateKey;
     }
 
-    public String getAesKey() {
-        return aesKey;
-    }
 
-    public void setAesKey(String aesKey) {
-        this.aesKey = aesKey;
-    }
     public float getBalance() {
         return balance;
     }
@@ -148,8 +142,7 @@ public class Account {
     private String address;
     @Column(name="gender")
     private boolean gender;
-    @Column(name = "aesKey")
-    private String aesKey;
+
     @Column(name="rsaPublicKey" ,columnDefinition = "TEXT")
     private String rsaPublicKey;
     @Column(name="rsaPrivateKey", columnDefinition =  "TEXT")

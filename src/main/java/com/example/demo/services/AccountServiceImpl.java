@@ -110,7 +110,6 @@ public class AccountServiceImpl implements AccountService {
         // Save keys to the account entity
         account.setRsaPublicKey(publicKey);
         account.setRsaPrivateKey(privateKey);
-        account.setAesKey(aesKeyEncoded);
 
         // Save account to database
         accountRepository.save(account);
