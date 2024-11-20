@@ -33,6 +33,7 @@ public class KeyUtils {
     // Decode Base64 encoded String back to Key (for AES)
     public static SecretKey decodeAESKeyFromBase64(String encodedKey) {
         byte[] decodedKey = Base64.getDecoder().decode(encodedKey);
-        return new SecretKeySpec(decodedKey, "AES");
+        SecretKey aesKey = new SecretKeySpec(decodedKey, "AES");
+        return aesKey;
     }
 }

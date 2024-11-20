@@ -60,4 +60,9 @@ public class TransactionServiceImpl implements TransactionService {
 
         return transactionRepository.save(trasnDB);
     }
+
+    @Override
+    public Transaction findById(int transactionId) {
+        return transactionRepository.findById(transactionId).get();
+    }
 }

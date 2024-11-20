@@ -14,6 +14,8 @@ public interface TransactionService {
     // Update operation
     Transaction updateTransaction(Transaction transaction, int transactionId);
 
+    // Find by ID
+    Transaction findById(int transactionId);
     // Delete operation
 
 //    void deleteAccountByID(int accountID);

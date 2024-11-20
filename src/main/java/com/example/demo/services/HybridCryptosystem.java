@@ -29,9 +29,14 @@ public class HybridCryptosystem {
 
     // Decrypt data using AES
     public static byte[] decryptAES(byte[] encryptedData, SecretKey secretKey) throws Exception {
-        Cipher cipher = Cipher.getInstance("AES");
-        cipher.init(Cipher.DECRYPT_MODE, secretKey);
-        return cipher.doFinal(encryptedData);
+//        Cipher cipher = Cipher.getInstance("AES");
+//        cipher.init(Cipher.DECRYPT_MODE, secretKey);
+//        return cipher.doFinal(encryptedData);
+//        byte[] encryptedMessageBytes = Base64.getDecoder().decode(encryptedMessage);
+        Cipher aesCipher = Cipher.getInstance("AES");
+        aesCipher.init(Cipher.DECRYPT_MODE, secretKey);
+        byte[] decryptedMessageBytes = aesCipher.doFinal(encryptedData);
+        return decryptedMessageBytes;
     }
 
     // Encrypt AES key using RSA
