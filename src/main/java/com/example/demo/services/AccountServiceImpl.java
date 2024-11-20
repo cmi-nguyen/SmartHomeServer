@@ -87,7 +87,7 @@ public class AccountServiceImpl implements AccountService {
     public Boolean login(Account account) {
        List<Account> accounts = accountRepository.findAll();
        for (int i = 0; i < accounts.size(); i++){
-           if (account.getPassword().equals(accounts.get(i).getPassword()) && account.getAccountName().equals(accounts.get(i).getAccountName())){
+           if (account.getPassword().equals(accounts.get(i).getPassword()) && account.getEmail().equals(accounts.get(i).getEmail())){
                return  true;
            }
        }
