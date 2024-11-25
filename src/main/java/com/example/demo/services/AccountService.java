@@ -22,7 +22,7 @@ public interface AccountService {
 
     Account findByID(int accountID);
 
-    Boolean login(Account account);
+    Account login(Account account);
 
     Account generateAndSaveKeysForAccount(Account account) throws NoSuchAlgorithmException;
 }

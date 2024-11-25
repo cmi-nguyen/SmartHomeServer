@@ -84,14 +84,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Boolean login(Account account) {
+    public Account login(Account account) {
        List<Account> accounts = accountRepository.findAll();
        for (int i = 0; i < accounts.size(); i++){
            if (account.getPassword().equals(accounts.get(i).getPassword()) && account.getEmail().equals(accounts.get(i).getEmail())){
-               return  true;
+               return  accounts.get(i);
            }
        }
-       return false;
+       return null;
     }
 
     @Override
