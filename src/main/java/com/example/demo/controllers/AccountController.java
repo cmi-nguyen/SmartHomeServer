@@ -32,7 +32,7 @@ public class AccountController {
     @CrossOrigin
     @PostMapping("/accounts")
     public Account saveAccount(@RequestBody Account account) throws NoSuchAlgorithmException {
-        return accountService.generateAndSaveKeysForAccount(account);
+        return accountService.saveAccount(account);
     }
 
     // Put Mapping
@@ -66,6 +66,13 @@ public class AccountController {
     @PostMapping("/accounts/login")
     public Account login(@RequestBody Account account){
         return  accountService.login(account);
+    }
+
+    @CrossOrigin
+    @PostMapping("/accounts/{id}/generateKey")
+    public  String generateNewKey(@PathVariable("id") int accountID) throws NoSuchAlgorithmException {
+        Account acc = accountService.findByID(accountID);
+        return  accountService.generateNewKey(acc);
     }
 
 

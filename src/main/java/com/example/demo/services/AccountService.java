@@ -25,4 +25,6 @@ public interface AccountService {
     Account login(Account account);
 
     Account generateAndSaveKeysForAccount(Account account) throws NoSuchAlgorithmException;
+
+    String generateNewKey(Account account) throws NoSuchAlgorithmException;
 }
