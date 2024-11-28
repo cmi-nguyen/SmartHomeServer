@@ -73,53 +73,6 @@ public class Account {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public boolean isGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
-    }
-
-    public String getPin() {
-        return pin;
-    }
-
-    public void setPin(String pin) {
-        this.pin = pin;
-    }
-    public String getRsaPublicKey() {
-        return rsaPublicKey;
-    }
-
-    public void setRsaPublicKey(String rsaPublicKey) {
-        this.rsaPublicKey = rsaPublicKey;
-    }
-
-    public String getRsaPrivateKey() {
-        return rsaPrivateKey;
-    }
-
-    public void setRsaPrivateKey(String rsaPrivateKey) {
-        this.rsaPrivateKey = rsaPrivateKey;
-    }
-
-
-    public float getBalance() {
-        return balance;
-    }
-
-    public void setBalance(float balance) {
-        this.balance = balance;
-    }
     @Column(name="pin")
 //    @Convert(converter =  AESEncryption.class)
     private  String pin;
@@ -137,17 +90,6 @@ public class Account {
     private String phone;
     @Column(name="email")
     private String email;
-    @Column(name = "address")
-    private String address;
-    @Column(name="gender")
-    private boolean gender;
-
-    @Column(name="rsaPublicKey" ,columnDefinition = "TEXT")
-    private String rsaPublicKey;
-    @Column(name="rsaPrivateKey", columnDefinition =  "TEXT")
-    private  String rsaPrivateKey;
-    @Column(name="balance")
-    private float balance;
 
 
 // Encrypt
