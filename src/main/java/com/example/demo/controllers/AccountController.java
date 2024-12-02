@@ -67,18 +67,5 @@ public class AccountController {
         return  accountService.login(account);
     }
 
-    @CrossOrigin
-    @PostMapping("/accounts/{id}/generateKey")
-    public  String generateNewKey(@PathVariable("id") int accountID) throws NoSuchAlgorithmException {
-        Account acc = accountService.findByID(accountID);
-        return  accountService.generateNewKey(acc);
-    }
 
-
-    public String ConvertValue(String input, SecretKey key) throws NoSuchAlgorithmException, InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
-        IvParameterSpec ivParameterSpec = AESEncryptionService.generateIv();
-        String algorithm = "AES/CBC/PKCS5Padding";
-        return AESEncryptionService.encrypt(algorithm, input, key, ivParameterSpec);
-//        String plainText = AESEncryptionService.decrypt(algorithm, cipherText, key, ivParameterSpec);
-    }
 }
