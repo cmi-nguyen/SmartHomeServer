@@ -62,7 +62,7 @@ public class AccountController {
 
     //TODOS: login , Encrypt
     @CrossOrigin
-    @PostMapping("/accounts/login")
+    @PostMapping("/login")
     public Account login(@RequestBody Account account){
         return  accountService.login(account);
     }
